@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BeltAndByte_RFQ_Standard",
+  "description": "Standardized Request for Quotation (RFQ) schema for Belt & Byte AI Autonomous Supply Chain Protocol.",
+  "type": "object",
+  "required": [
+    "rfq_id",
+    "timestamp",
+    "item_specifications",
+    "logistics_preferences",
+    "commercial_terms"
+  ],
+  "properties": {
+    "rfq_id": {
+      "type": "string",
+      "description": "Unique identifier for the RFQ batch."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "item_specifications": {
+      "type": "object",
+      "required": [
+        "part_name",
+        "material_grade",
+        "quantity"
+      ],
+      "properties": {
+        "part_name": {
+          "type": "string"
+        },
+        "material_grade": {
+          "type": "string",
+          "example": "SS 316L"
+        },
+        "sealing_material": {
+          "type": "string",
+          "example": "Viton"
+        },
+        "max_operating_temp_celsius": {
+          "type": "number",
+          "example": 85
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tolerance_standard": {
+          "type": "string",
+          "default": "ISO 2768-m"
+        }
+      }
+    },
+    "logistics_preferences": {
+      "type": "object",
+      "required": [
+        "origin_region",
+        "destination_hub",
+        "incoterms"
+      ],
+      "properties": {
+        "origin_region": {
+          "type": "string",
+          "default": "East Asia"
+        },
+        "destination_hub": {
+          "type": "string"
+        },
+        "incoterms": {
+          "type": "string",
+          "enum": [
+            "FOB",
+            "CIF",
+            "DDP",
+            "EXW"
+          ]
+        },
+        "preferred_corridors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "Maritime_Direct",
+            "Central_Eurasia_Rail"
+          ]
+        }
+      }
+    },
+    "commercial_terms": {
+      "type": "object",
+      "required": [
+        "currency",
+        "benchmark_index"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        },
+        "benchmark_index": {
+          "type": "string",
+          "example": "LME_Nickel_3M"
+        },
+        "target_lead_time_days": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

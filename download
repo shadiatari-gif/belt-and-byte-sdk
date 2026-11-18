@@ -1,0 +1,18 @@
+# Private Core & Vault Exclusion (CRITICAL)
+private_core/
+vault_storage/
+*.key
+*.pem
+*.enc
+
+# Environment & Local Configs
+.env
+config_local.json
+suppliers_database.csv
+historical_prices.db
+
+# Python Artifacts
+__pycache__/
+*.py[cod]
+venv/
+.DS_Store
